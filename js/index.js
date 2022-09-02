@@ -47,19 +47,48 @@ const displayCatagoryNews = (newses) => {
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
-        <img class="w-5/12 h-80" src="${news.thumbnail_url}" alt="Album">
-        <div class="card-body">
-            <h2 class="card-title font-extrabold	text-black">${news.title}</h2>
-             <p class="text-ellipsis overflow-hidden">${news.details.slice(
-               0,
-               200
-             )}...</p>
-            <div class="card-actions justify-end">
-                <button class="btn btn-primary text-black">Details</button>
-            </div>
+    <img class="w-5/12 h-80" src="${
+      news.thumbnail_url ? news.thumbnail_url : "No data Found"
+    }" alt="Album">
+    <div class="card-body">
+      <h2 class="card-title font-extrabold	text-black">${
+        news.title ? news.title : "No Data Found"
+      }</h2>
+      <p class="text-ellipsis overflow-hidden">${
+        news.details ? news.details.slice(0, 200) : "No data found"
+      }...</p>  
+
+      <div class="flex justify-between items-center">
+      <div class="flex justify-between">
+        <div class="avatar">
+          <div
+            class="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+          >
+            <img src="${
+              news.author ? news.author.img : "No author data found"
+            }" />
+          </div>
         </div>
+        <div>
+          <p>${
+            news.author.name === null || news.author.name === ""
+              ? "No author data found"
+              : news.author.name
+          }</p>
+        </div>
+      </div>
+      <div>
+        <button class="btn text-black">Details</button>
+      </div>
     </div>
-  
+
+    </div>
+    </div>
+    
+    
+</div>
+
+
     `;
     newsBody.appendChild(newNewsDiv);
   });
