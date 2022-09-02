@@ -14,14 +14,14 @@ const displayData = (catagorys) => {
     const newCatagoryDiv = document.createElement("div");
 
     catagoryMenuContainer.classList.add(
-      "flex",
+      "lg:flex",
       "justify-between",
-      "text-black"
+      "text-black",
+      "text-center"
     );
 
     newCatagoryDiv.innerHTML = `
-        <button class="   
-        " onclick="catagoryNews(${catagory.category_id})">${catagory.category_name}</button>
+        <button class="font-bold text-slate-200" onclick="catagoryNews(${catagory.category_id})">${catagory.category_name}</button>
     `;
     catagoryMenuContainer.appendChild(newCatagoryDiv);
   });
@@ -29,7 +29,7 @@ const displayData = (catagorys) => {
 
 // Catagory News code For Click News Catagory
 const catagoryNews = (id) => {
-  console.log(id);
+  //   console.log(id);
 
   const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
   fetch(url)
@@ -47,38 +47,48 @@ const displayCatagoryNews = (newses) => {
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
-    <img class="w-5/12 h-80" src="${
-      news.thumbnail_url ? news.thumbnail_url : "No data Found"
-    }" alt="Album">
+    <img class="lg:w-5/12 w-full h-80" src="${news.thumbnail_url}" alt="Album">
     <div class="card-body">
-      <h2 class="card-title font-extrabold	text-black">${
-        news.title ? news.title : "No Data Found"
+      <h2 class="card-title font-extrabold	text-white">${
+        news === null || news == "" ? "No Information Found" : news.title
       }</h2>
       <p class="text-ellipsis overflow-hidden">${
         news.details ? news.details.slice(0, 200) : "No data found"
       }...</p>  
 
-      <div class="flex justify-between items-center">
-      <div class="flex justify-between">
+
+
+      <div class="lg:flex justify-between items-center text-center">
+      <div class="lg:flex justify-start justify-items-center">
         <div class="avatar">
           <div
             class="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
           >
-            <img src="${
-              news.author ? news.author.img : "No author data found"
-            }" />
+            <img src="${news.author ? news.author.img : "No author data found"}"
+            />
           </div>
         </div>
-        <div>
+        <div class="ml-5 pt-2.5">
+          <p>
+            ${
+              news.author.name === null || news.author.name === ""
+                ? "No author data found"
+                : news.author.name
+            }"
+          </p>
           <p>${
-            news.author.name === null || news.author.name === ""
-              ? "No author data found"
-              : news.author.name
+            news.author.published_date === null ||
+            news.author.published_date === ""
+              ? "No published date data found"
+              : news.author.published_date
           }</p>
         </div>
       </div>
       <div>
-        <button class="btn text-black">Details</button>
+            <p> <i class="fa-solid fa-eye"></i> ${news.total_view}</p>    
+        </div>
+      <div>
+        <button class="text-black"><i class="fa-solid fa-arrow-right"></i></button>
       </div>
     </div>
 
