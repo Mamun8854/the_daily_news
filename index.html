@@ -31,7 +31,9 @@
       <section>
         <div class="navbar bg-base-100">
           <div class="flex-1">
-            <a class="btn btn-ghost normal-case text-xl">The Daily News</a>
+            <a class="btn btn-ghost normal-case text-xl"
+              >The <span class="text-teal-500 mx-2">Daily</span> News</a
+            >
           </div>
           <div class="flex-none">
             <ul class="menu menu-horizontal p-0">
@@ -41,18 +43,29 @@
           </div>
         </div>
       </section>
+      <hr />
+      <!-- catagory menu section -->
+      <section class="mt-4 mx-10">
+        <div id="catagory-menu"></div>
+      </section>
     </header>
-    <hr />
 
     <!-- main section  -->
     <main>
       <!-- catagory menu section -->
-      <section>
+      <section class="mt-4 mx-10">
         <div id="catagory-menu"></div>
+      </section>
+
+      <!-- catagory section  -->
+
+      <section>
+        <div id="news-body" class="mt-10 px-20"></div>
       </section>
     </main>
 
     <!-- Javascript code link  -->
     <script src="js/index.js"></script>
+    <script src="js/header.js"></script>
   </body>
 </html>
