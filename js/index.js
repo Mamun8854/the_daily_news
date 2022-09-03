@@ -51,9 +51,16 @@ const displayCatagoryNews = (newses) => {
   }
 
   newsBody.innerHTML = ``;
+  // total news result
+  const totalNewsResultContainer = document.getElementById("total-news-result");
+
+  const totalNews = newses.length;
+  // console.log(totalNews);
+  totalNewsResultContainer.innerHTML = `<h2 class="text-2xl font-bold text-white mt-10 pl-20">${totalNews} News found for this page</h2>`;
 
   newses.forEach((news) => {
-    // console.log(typeof news.total_view);
+    // console.log(newses.length);
+
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
