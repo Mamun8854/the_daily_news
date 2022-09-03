@@ -37,7 +37,7 @@ const catagoryNews = (category_id) => {
 };
 // ----->display news body<----
 const displayCatagoryNews = (newses) => {
-  //   console.log(newses);
+  // console.log(newses);
   const newsBody = document.getElementById("news-body");
   const errorMessage = document.getElementById("error-message");
   if (newses.length === 0) {
@@ -50,10 +50,10 @@ const displayCatagoryNews = (newses) => {
     newsBody.classList.remove("hidden");
   }
 
-  //   newsBody.innerHTML = ``;
+  newsBody.innerHTML = ``;
 
   newses.forEach((news) => {
-    // console.log(news);
+    // console.log(news._id);
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
@@ -95,12 +95,10 @@ const displayCatagoryNews = (newses) => {
             <p> <i class="fa-solid fa-eye"></i> ${news.total_view}</p>    
         </div>
       <div>
-        <button class="text-black"  onclick="loadNewsDetails(${
-          news.category_id
-        })">
-            <a href="#loadNewsDetails">
-                <i class="fa-solid fa-arrow-right">
-            </i></a>
+        <button class="text-black"  onclick="loadNewsDetails('${news._id}')">
+            
+            <label for="loadNewsDetails" class="btn modal-button">details</label>
+
         </button>
         
       </div>
@@ -115,7 +113,11 @@ const displayCatagoryNews = (newses) => {
   //   spinner end
   toggleSpinner(false);
 };
-
+{
+  /* <a href="#loadNewsDetails">
+  <i class="fa-solid fa-arrow-right"></i>
+</a>; */
+}
 // display news details with modal
 const loadNewsDetails = (id) => {
   const url = `https://openapi.programming-hero.com/api/news/${id}`;
@@ -126,13 +128,14 @@ const loadNewsDetails = (id) => {
 };
 
 const displayNewsDetailsWithModal = (details) => {
+  // console.log(details);
   const modalDetailsBody = document.getElementById("news-details");
-
+  modalDetailsBody.innerHTML = ``;
   for (const news of details) {
-    // console.log(news);
+    console.log(news);
     const newModalDiv = document.createElement("div");
     newModalDiv.innerHTML = `
-        <h2>${data.details}</h2>
+        <h2><b class="text-white">News Head Line :</b> ${news.title}</h2>
         <p></p>
     `;
     modalDetailsBody.appendChild(newModalDiv);

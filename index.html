@@ -89,15 +89,11 @@
           </button>
         </div>
       </section>
-      <!-- catagory menu section -->
-      <section class="mt-4 mx-10">
-        <div id="catagory-menu"></div>
-      </section>
 
       <!-- catagory section  -->
 
       <section>
-        <div id="news-body" class="mt-10 px-20"></div>
+        <div id="news-body" class="mt-10 lg:px-20"></div>
       </section>
       <section>
         <div
@@ -107,16 +103,16 @@
           <h2>No News Found !</h2>
         </div>
       </section>
+      <!-- Modal section  -->
       <section>
         <!-- Modal -->
-
-        <div class="modal" id="loadNewsDetails">
-          <div id="news-details" class="modal-box">
-            <div class="modal-action">
-              <a href="#" class="btn">Yay!</a>
-            </div>
-          </div>
-        </div>
+        <input type="checkbox" id="loadNewsDetails" class="modal-toggle" />
+        <label
+          for="loadNewsDetails"
+          class="modal cursor-pointer sm:modal-middle"
+        >
+          <label id="news-details" class="modal-box" for=""> </label>
+        </label>
       </section>
     </main>
     <!-- footer section  -->
