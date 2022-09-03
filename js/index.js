@@ -44,8 +44,11 @@ const displayCatagoryNews = (newses) => {
   newsBody.innerHTML = ``;
   newses.forEach((news) => {
     console.log(news);
-    const newNewsDiv = document.createElement("div");
-    newNewsDiv.innerHTML = `
+    if (news === null || news === "") {
+      console.log("no data found");
+    } else {
+      const newNewsDiv = document.createElement("div");
+      newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
     <img class="lg:w-5/12 w-full h-80" src="${news.thumbnail_url}" alt="Album">
     <div class="card-body">
@@ -96,11 +99,12 @@ const displayCatagoryNews = (newses) => {
     </div>
     
     
-</div>
+    </div>
 
 
     `;
-    newsBody.appendChild(newNewsDiv);
+      newsBody.appendChild(newNewsDiv);
+    }
   });
 };
 loadNewsData();
