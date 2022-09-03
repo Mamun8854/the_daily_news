@@ -65,9 +65,6 @@ const displayCatagoryNews = (newses) => {
       <p class="text-ellipsis overflow-hidden">${
         news.details ? news.details.slice(0, 200) : "No data found"
       }...</p>  
-
-
-
       <div class="lg:flex justify-between items-center text-center">
       <div class="lg:flex justify-start justify-items-center">
         <div class="avatar">
@@ -98,7 +95,9 @@ const displayCatagoryNews = (newses) => {
             <p> <i class="fa-solid fa-eye"></i> ${news.total_view}</p>    
         </div>
       <div>
-        <button class="text-black"  onclick="loadNewsDetails()">
+        <button class="text-black"  onclick="loadNewsDetails(${
+          news.category_id
+        })">
             <a href="#loadNewsDetails">
                 <i class="fa-solid fa-arrow-right">
             </i></a>
@@ -119,18 +118,24 @@ const displayCatagoryNews = (newses) => {
 
 // display news details with modal
 const loadNewsDetails = (id) => {
-  const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
+  const url = `https://openapi.programming-hero.com/api/news/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayCatagoryNews(data.data))
+    .then((data) => displayNewsDetailsWithModal(data.data))
     .catch((error) => console.log(error));
 };
 
 const displayNewsDetailsWithModal = (details) => {
   const modalDetailsBody = document.getElementById("news-details");
-  for (const data of details) {
-    // console.log(data);
-    
+
+  for (const news of details) {
+    // console.log(news);
+    const newModalDiv = document.createElement("div");
+    newModalDiv.innerHTML = `
+        <h2>${data.details}</h2>
+        <p></p>
+    `;
+    modalDetailsBody.appendChild(newModalDiv);
   }
 };
 // Spinner
