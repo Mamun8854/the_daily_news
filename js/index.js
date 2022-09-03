@@ -10,28 +10,26 @@ const displayData = (catagorys) => {
   const catagoryMenuContainer = document.getElementById("catagory-menu");
   catagorys.forEach((catagory) => {
     // console.log(catagory);
-
     const newCatagoryDiv = document.createElement("div");
-
     catagoryMenuContainer.classList.add(
       "lg:flex",
       "justify-between",
       "text-black",
       "text-center"
     );
-
     newCatagoryDiv.innerHTML = `
-        <button class="font-bold text-slate-200" onclick="catagoryNews(${catagory.category_id})">${catagory.category_name}</button>
+        <button class="font-bold text-slate-200" onclick="catagoryNews(${catagory.category_id}),toggleSpinner(true)">${catagory.category_name}</button>
     `;
     catagoryMenuContainer.appendChild(newCatagoryDiv);
+    // spinner start
   });
 };
 
 // Catagory News code For Click News Catagory
-const catagoryNews = (id) => {
-  //   console.log(id);
+const catagoryNews = (category_id) => {
+  //   console.log(category_id);
 
-  const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
+  const url = `https://openapi.programming-hero.com/api/news/category/0${category_id}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayCatagoryNews(data.data))
@@ -41,14 +39,23 @@ const catagoryNews = (id) => {
 const displayCatagoryNews = (newses) => {
   //   console.log(newses);
   const newsBody = document.getElementById("news-body");
-  newsBody.innerHTML = ``;
+  const errorMessage = document.getElementById("error-message");
+  if (newses.length === 0) {
+    // console.log("its working");
+    errorMessage.classList.remove("hidden");
+    newsBody.classList.add("hidden");
+    toggleSpinner(false);
+  } else {
+    errorMessage.classList.add("hidden");
+    newsBody.classList.remove("hidden");
+  }
+
+  //   newsBody.innerHTML = ``;
+
   newses.forEach((news) => {
-    console.log(news);
-    if (news === null || news === "") {
-      console.log("no data found");
-    } else {
-      const newNewsDiv = document.createElement("div");
-      newNewsDiv.innerHTML = `
+    // console.log(news);
+    const newNewsDiv = document.createElement("div");
+    newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
     <img class="lg:w-5/12 w-full h-80" src="${news.thumbnail_url}" alt="Album">
     <div class="card-body">
@@ -91,20 +98,49 @@ const displayCatagoryNews = (newses) => {
             <p> <i class="fa-solid fa-eye"></i> ${news.total_view}</p>    
         </div>
       <div>
-        <button class="text-black"><i class="fa-solid fa-arrow-right"></i></button>
+        <button class="text-black"  onclick="loadNewsDetails()">
+            <a href="#loadNewsDetails">
+                <i class="fa-solid fa-arrow-right">
+            </i></a>
+        </button>
+        
       </div>
     </div>
 
     </div>
     </div>
-    
-    
     </div>
-
-
     `;
-      newsBody.appendChild(newNewsDiv);
-    }
+    newsBody.appendChild(newNewsDiv);
   });
+  //   spinner end
+  toggleSpinner(false);
 };
+
+// display news details with modal
+const loadNewsDetails = (id) => {
+  const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayCatagoryNews(data.data))
+    .catch((error) => console.log(error));
+};
+
+const displayNewsDetailsWithModal = (details) => {
+  const modalDetailsBody = document.getElementById("news-details");
+  for (const data of details) {
+    // console.log(data);
+    
+  }
+};
+// Spinner
+const toggleSpinner = (isLoading) => {
+  const errorMessageBody = document.getElementById("processing");
+  if (isLoading) {
+    errorMessageBody.classList.remove("hidden");
+  } else {
+    errorMessageBody.classList.add("hidden");
+  }
+};
+
 loadNewsData();
