@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post</title>
+    <!-- css link  -->
+    <link rel="stylesheet" href="style/style.css" />
+    <!-- Tailwind and DaisyUI cdn  link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <header>
+      <!-- Navbar Secction -->
+      <section>
+        <div class="navbar bg-base-100">
+          <div class="flex-1">
+            <a class="btn btn-ghost normal-case text-xl" href="index.html"
+              >The <span class="text-teal-500 mx-2">Daily</span> News</a
+            >
+          </div>
+          <div class="flex-none">
+            <ul class="menu menu-horizontal p-0">
+              <li><a href="news.html">News</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </header>
+    <main>
+      <h2 class="text-2xl text-bold text-center">Your Question's Answer</h2>
+      <section class="blog-main-section mt-20 w-9/12 mx-auto">
+        <!-- collapse Qustion & Answer 01 -->
+        <div class="collapse collapse-arrow border rounded-lg">
+          <input type="checkbox" />
+          <div class="collapse-title text-2xl font-bold text-white">
+            Differences between var, let, and const
+          </div>
+          <div class="collapse-content">
+            <p class="text-black">
+              <b>Var :</b> i) The scope of a var variable is functional scope.
+              ii) It can be updated and re-declared into the scope.
+            </p>
+            <p class="text-black">
+              <b>Let :</b> i) The scope of a let variable is block scope. ii)It
+              can be updated but cannot be re-declared into the scope.
+            </p>
+            <p class="text-black">
+              <b>const :</b> i) The scope of a const variable is block scope.
+              ii) It cannot be updated or re-declared into the scope.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="blog-main-section mt-5 w-9/12 mx-auto">
+        <!-- collapse Qustion & Answer 02-->
+        <div class="collapse collapse-arrow border rounded-lg">
+          <input type="checkbox" />
+          <div class="collapse-title text-2xl font-bold text-white">
+            Click me to show/hide content
+          </div>
+          <div class="collapse-content">
+            <p>hello</p>
+          </div>
+        </div>
+      </section>
+      <section class="blog-main-section mt-5 w-9/12 mx-auto">
+        <!-- collapse Qustion & Answer 03 -->
+        <div class="collapse collapse-arrow border rounded-lg">
+          <input type="checkbox" />
+          <div class="collapse-title text-2xl font-bold text-white">
+            Click me to show/hide content
+          </div>
+          <div class="collapse-content">
+            <p>hello</p>
+          </div>
+        </div>
+      </section>
+      <section class="blog-main-section mt-5 w-9/12 mx-auto">
+        <!-- collapse Qustion & Answer 04-->
+        <div class="collapse collapse-arrow border rounded-lg">
+          <input type="checkbox" />
+          <div class="collapse-title text-2xl font-bold text-white">
+            Click me to show/hide content
+          </div>
+          <div class="collapse-content">
+            <p>hello</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -36,14 +36,14 @@
       <section>
         <div class="navbar bg-base-100">
           <div class="flex-1">
-            <a class="btn btn-ghost normal-case text-xl"
+            <a class="btn btn-ghost normal-case text-xl" href="index.html"
               >The <span class="text-teal-500 mx-2">Daily</span> News</a
             >
           </div>
           <div class="flex-none">
             <ul class="menu menu-horizontal p-0">
-              <li><a href="index.html">News</a></li>
-              <li><a>Blog</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="blog.html">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -57,34 +57,62 @@
 
     <!-- main section  -->
     <main>
-      <!-- catagory menu section -->
-      <section class="mt-4 mx-10">
-        <div id="catagory-menu"></div>
+      <!-- spinner -->
+      <section id="processing" class="m-48 screens hidden">
+        <div class="flex items-center justify-center">
+          <button
+            type="button"
+            class="flex items-center rounded-lg bg-green-700 px-4 py-2 text-white"
+            disabled
+          >
+            <svg
+              class="mr-3 h-5 w-5 animate-spin text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            <span class="font-medium"> Processing... </span>
+          </button>
+        </div>
       </section>
 
       <!-- catagory section  -->
 
       <section>
-        <div id="news-body" class="mt-10 px-20"></div>
+        <div id="news-body" class="mt-10 lg:px-20"></div>
       </section>
-
+      <section>
+        <div
+          id="error-message"
+          class="text-bold text-2xl text-center text-yellow-400 py-40 hidden"
+        >
+          <h2>No News Found !</h2>
+        </div>
+      </section>
+      <!-- Modal section  -->
       <section>
         <!-- Modal -->
-
-        <div class="modal" id="loadNewsDetails">
-          <div id="news-details" class="modal-box">
-            <h3 class="font-bold text-lg">
-              Congratulations random Internet user!
-            </h3>
-            <p class="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-            <div class="modal-action">
-              <a href="#" class="btn">Yay!</a>
-            </div>
-          </div>
-        </div>
+        <input type="checkbox" id="loadNewsDetails" class="modal-toggle" />
+        <label
+          for="loadNewsDetails"
+          class="modal cursor-pointer sm:modal-middle"
+        >
+          <label id="news-details" class="modal-box" for=""> </label>
+        </label>
       </section>
     </main>
     <!-- footer section  -->

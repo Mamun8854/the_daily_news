@@ -53,7 +53,7 @@ const displayCatagoryNews = (newses) => {
   newsBody.innerHTML = ``;
 
   newses.forEach((news) => {
-    // console.log(news._id);
+    // console.log(typeof news.total_view);
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
     <div class="card lg:card-side bg-base-100 shadow-xl mt-10 mb-20">
@@ -112,11 +112,10 @@ const displayCatagoryNews = (newses) => {
   });
   //   spinner end
   toggleSpinner(false);
+  // footer
+  footer(true);
 };
 {
-  /* <a href="#loadNewsDetails">
-  <i class="fa-solid fa-arrow-right"></i>
-</a>; */
 }
 // display news details with modal
 const loadNewsDetails = (id) => {
@@ -135,8 +134,20 @@ const displayNewsDetailsWithModal = (details) => {
     console.log(news);
     const newModalDiv = document.createElement("div");
     newModalDiv.innerHTML = `
-        <h2><b class="text-white">News Head Line :</b> ${news.title}</h2>
-        <p></p>
+        <h2><b class="text-white">News Head Line :</b> ${
+          news.title ? news.title : "No News head line found!"
+        }</h2>
+
+
+        <p><b class="text-white">News Details :</b> ${
+          news.details ? news.details.slice(0, 200) : "No data found"
+        }</p>
+
+        <p><b class="text-white">Writter :</b> ${
+          news.author.name === null || news.author.name === ""
+            ? "Writter Information Not Found"
+            : news.author.name
+        }</p>
     `;
     modalDetailsBody.appendChild(newModalDiv);
   }
@@ -150,5 +161,13 @@ const toggleSpinner = (isLoading) => {
     errorMessageBody.classList.add("hidden");
   }
 };
-
+// footer
+const footer = (isFooter) => {
+  const footerText = document.getElementById("footer");
+  if (isFooter) {
+    footerText.classList.remove("hidden");
+  } else {
+    footerText.classList.add("hidden");
+  }
+};
 loadNewsData();
