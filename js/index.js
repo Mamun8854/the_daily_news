@@ -59,7 +59,7 @@ const displayCatagoryNews = (newses) => {
   totalNewsResultContainer.innerHTML = `<h2 class="text-2xl font-bold text-white mt-10 pl-20">${totalNews} News found for this page</h2>`;
 
   newses.forEach((news) => {
-    // console.log(newses.length);
+    // console.log(newses);
 
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
@@ -119,8 +119,6 @@ const displayCatagoryNews = (newses) => {
   });
   //   spinner end
   toggleSpinner(false);
-  // footer
-  footer(true);
 };
 {
 }
@@ -168,13 +166,5 @@ const toggleSpinner = (isLoading) => {
     errorMessageBody.classList.add("hidden");
   }
 };
-// footer
-const footer = (isFooter) => {
-  const footerText = document.getElementById("footer");
-  if (isFooter) {
-    footerText.classList.remove("hidden");
-  } else {
-    footerText.classList.add("hidden");
-  }
-};
+
 loadNewsData();
