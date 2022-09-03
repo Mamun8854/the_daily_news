@@ -59,7 +59,7 @@ const displayCatagoryNews = (newses) => {
   totalNewsResultContainer.innerHTML = `<h2 class="text-2xl font-bold text-white mt-10 pl-20">${totalNews} News found for this page</h2>`;
 
   newses.forEach((news) => {
-    // console.log(newses);
+    // console.log(news);
 
     const newNewsDiv = document.createElement("div");
     newNewsDiv.innerHTML = `
@@ -99,7 +99,13 @@ const displayCatagoryNews = (newses) => {
         </div>
       </div>
       <div>
-            <p> <i class="fa-solid fa-eye"></i> ${news.total_view}</p>    
+            <p> <i class="fa-solid fa-eye"></i> ${
+              news.total_view === null ||
+              news.total_view === "" ||
+              news.total_view === 0
+                ? "view data not found"
+                : news.total_view
+            }</p>    
         </div>
       <div>
         <button class="text-black"  onclick="loadNewsDetails('${news._id}')">
