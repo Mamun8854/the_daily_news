@@ -37,6 +37,9 @@ const catagoryNews = (category_id) => {
 };
 // ----->display news body<----
 const displayCatagoryNews = (newses) => {
+  newses.sort((a, b) => {
+    return b.total_view - a.total_view;
+  });
   // console.log(newses);
   const newsBody = document.getElementById("news-body");
   const errorMessage = document.getElementById("error-message");
@@ -78,7 +81,9 @@ const displayCatagoryNews = (newses) => {
           <div
             class="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
           >
-            <img src="${news.author ? news.author.img : "No author data found"}"
+            <img src="${
+              news.author ? news.author.img : "No author image data found"
+            }"
             />
           </div>
         </div>
@@ -145,6 +150,29 @@ const displayNewsDetailsWithModal = (details) => {
     console.log(news);
     const newModalDiv = document.createElement("div");
     newModalDiv.innerHTML = `
+    <div class="lg:flex mt-4 justify-start justify-items-center">
+    <div class="card-actions">
+      <div class="avatar mx-auto my-2 lg:my-0">
+        <div
+          class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+        >
+          <img src="${
+            news.author ? news.author.img : "No author image data found"
+          }" />
+        </div>
+      </div>
+    </div>
+
+    <div class="ml-5 my-2 lg:my-0 text-center lg:text-start">
+      <p>${
+        news.author.name === null || news.author.name === ""
+          ? "Writter Information Not Found"
+          : news.author.name
+      }</p>
+      
+    </div>
+  </div>
+
         <h2><b class="text-white">News Head Line :</b> ${
           news.title ? news.title : "No News head line found!"
         }</h2>
@@ -154,10 +182,11 @@ const displayNewsDetailsWithModal = (details) => {
           news.details ? news.details.slice(0, 200) : "No data found"
         }</p>
 
-        <p><b class="text-white">Writter :</b> ${
-          news.author.name === null || news.author.name === ""
-            ? "Writter Information Not Found"
-            : news.author.name
+        <p><b class="text-white">Published Date :</b> ${
+          news.author.published_date === null ||
+          news.author.published_date === ""
+            ? "Published Date Information Not Found"
+            : news.author.published_date
         }</p>
     `;
     modalDetailsBody.appendChild(newModalDiv);
